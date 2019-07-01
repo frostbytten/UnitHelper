@@ -18,7 +18,7 @@ import ucar.units.UnitSystemException;
  */
 public class UnitConverterTest {
 
-    private static String[] base = {
+    private static final String[] BASE = {
         "number", "counts", "unitless", "fraction", "code", "ratio",
         "year", "month", "mo", "day", "h", "hr", "hour", "d", "min",
         "degF", "degC",
@@ -34,42 +34,9 @@ public class UnitConverterTest {
         "Pa",
         "plant", "unit", "eye", "leaf", "corm", "shoot", "ear"
     };
-    private static String[] from = {
-
-        "number", "year", "date", "m2", "m",
-//        "degree angle",
-        "arc_degree",
-        "cm", "days", "decimal degrees", "percent", "day", "1/d", "g/cm3", "%", "mg/kg", "cmol/kg", "g[C]/100g[soil]",
-//        "doy",
-        "day",
-        "kg/ha", "mm", "kg[N]/ha", "counts/cm3", "unitless", "ppm",
-//        "oC", "C",
-        "degC",
-//        "#/m2",
-        "number/m2",
-        "kg[P]/ha", "kg[K]/ha", "fraction", "h",
-//        "MJ/m2.d",
-        "MJ/m2/d",
-        "km/d", "m2/m2", "kg[OM]/ha", "cm3/cm3", "cm/h", "1/cm", "g/Mg", "mmol/kg", "mmol/l", "g/kg", "ppb", "seimen", "vpm",
-//        "kPa/°C",
-        "kPa/degC",
-        "1/mm2", "mm/mo", "number/month",
-//        "mole/m2.d",
-        "mole/m2/d",
-        "hr", "mm/d", "kPa",
-//        "dap",
-        "code", "g/eye", "g/m2", "g/plant", "g/unit", "kg/hl", "l/kg", "mg", "mg/ha", "t/ha", "kg[water]/kg[harvest]", "%/day", "cm/cm2", "cm/g", "cm2", "cm2/g", "cm2/leaf", "cm2/plant", "g", "g/cm", "g/corm",
-        "g/m2.d", "g/plant.d", "g/shoot", "kg/ha.d", "mg/cm2", "mg/m2.s", "number/day", "number/plant", "number/shoot", "number/ear", "ratio", "g/cm2", "cm/cm3", "g/MJ", "mg/l", "cm/cm2.d", "cm/cm3.d", "cm2/m2.d", "m2/m2.d", "number/m", "number/m2.d",};
-    private static String[] to = {};
-    private static double[] val = {};
-    private static String[] expected = {};
 
     @Test
     public void testAgMIPUnit() throws UnitParseException, SpecificationException, NoSuchUnitException, UnitDBException, PrefixDBException, UnitSystemException {
-//        for (String unit : from) {
-//            System.out.print("Test "+ unit + " ...");
-//            System.out.println("Assert.assertEquals(\"" + unit + "\", \"" + UnitConverter.getDescp(unit)+ "\", UnitConverter.getDescp(\"" + unit + "\"));");
-//        }
         
         Assert.assertEquals("number", "count", UnitConverter.getDescp("number"));
         Assert.assertEquals("year", "3.15569259747E7 s", UnitConverter.getDescp("year"));
@@ -185,7 +152,7 @@ public class UnitConverterTest {
     
 //    @Test
     public void testBaseUnit() throws UnitParseException, SpecificationException, NoSuchUnitException, UnitDBException, PrefixDBException, UnitSystemException {
-        for (String unit : base) {
+        for (String unit : BASE) {
             System.out.println("Test "+ unit + " ...");
             Assert.assertTrue(unit, UnitConverter.isValid(unit));
             System.out.println("\t" + UnitConverter.getDescp(unit));
