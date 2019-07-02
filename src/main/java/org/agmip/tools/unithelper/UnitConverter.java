@@ -67,7 +67,7 @@ public class UnitConverter {
     }
 
     private static final HashMap<String, String> AGMIP_UNIT = new HashMap();
-    private static UnitDB DB = initDB();
+    private static final UnitDB DB = initDB();
     private static final UnitFormat PARSER = init();
     private static final HashMap<String, String> BASE_UNIT_MAP = initBaseUnitMap();
 
