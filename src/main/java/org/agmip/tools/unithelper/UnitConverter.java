@@ -268,11 +268,33 @@ public class UnitConverter {
             String ret = unit.toString();
             if (unit instanceof UnknownUnit) {
                 ret = "";
+            } else if (unit.isDimensionless() && ret.isEmpty()){
+                ret = "1.0";
             } else if (unit instanceof BaseUnit) {
                 ret = unit.getName();
             } else if (unit.getDerivedUnit() instanceof UnknownUnit) {
                 ret = "";
             }
+            return ret;
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+
+    public static String getCategory(String unitStr) {
+        String unitStrNoComment = preParsing(unitStr);
+        if (AGMIP_UNIT.containsKey(unitStrNoComment)) {
+            String agmipRet = AGMIP_UNIT.get(unitStrNoComment);
+            if (agmipRet.equals("1")) {
+                return "unitless";
+            }
+        }
+        try {
+            Unit unit = PARSER.parse(unitStrNoComment);
+            if (unit.isDimensionless()) {
+                return "unitless";
+            }
+            String ret = unit.getDerivedUnit().getQuantityDimension().toString();
             return ret;
         } catch (Exception ex) {
             return "";
