@@ -56,7 +56,7 @@ public class UnitConverterTest {
         Assert.assertEquals("%", "0.01", UnitConverter.getDescp("%"));
         Assert.assertEquals("mg/kg", "1.0E-6", UnitConverter.getDescp("mg/kg"));
         Assert.assertEquals("cmol/kg", "0.01 kg-1.mol", UnitConverter.getDescp("cmol/kg"));
-        Assert.assertEquals("g[C]/100g[soil]", "0.001 kg", UnitConverter.getDescp("g[C]/100g[soil]"));
+        Assert.assertEquals("g[C]/100g[soil]", "0.01", UnitConverter.getDescp("g[C]/100g[soil]"));
         Assert.assertEquals("day", "86400.0 s", UnitConverter.getDescp("day"));
         Assert.assertEquals("kg/ha", "1.0E-4 kg.m-2", UnitConverter.getDescp("kg/ha"));
         Assert.assertEquals("mm", "0.001 m", UnitConverter.getDescp("mm"));
@@ -73,7 +73,7 @@ public class UnitConverterTest {
         Assert.assertEquals("h", "3600.0 s", UnitConverter.getDescp("h"));
         Assert.assertEquals("MJ/m2/d", "11.574074074074074 kg.s-3", UnitConverter.getDescp("MJ/m2/d"));
         Assert.assertEquals("km/d", "0.011574074074074073 m.s-1", UnitConverter.getDescp("km/d"));
-        Assert.assertEquals("m2/m2", "", UnitConverter.getDescp("m2/m2"));
+        Assert.assertEquals("m2/m2", "1.0", UnitConverter.getDescp("m2/m2"));
         Assert.assertEquals("kg[OM]/ha", "1.0E-4 kg.m-2", UnitConverter.getDescp("kg[OM]/ha"));
         Assert.assertEquals("cm3/cm3", "1.0", UnitConverter.getDescp("cm3/cm3"));
         Assert.assertEquals("cm/h", "2.777777777777778E-6 m.s-1", UnitConverter.getDescp("cm/h"));
@@ -88,7 +88,7 @@ public class UnitConverterTest {
 //        Assert.assertEquals("kPa/°C", "1000.0 K-1.kg.m-1.s-2", UnitConverter.getDescp("kPa/°C"));
         Assert.assertEquals("kPa/degC", "1000.0 K-1.kg.m-1.s-2", UnitConverter.getDescp("kPa/degC"));
         Assert.assertEquals("1/mm2", "1000000.0 m-2", UnitConverter.getDescp("1/mm2"));
-        Assert.assertEquals("mm/mo", "1.0 m.o-1", UnitConverter.getDescp("mm/mo"));
+        Assert.assertEquals("mm/month", "3.8026517568982193E-10 m.s-1", UnitConverter.getDescp("mm/month"));
         Assert.assertEquals("number/month", "3.802651756898219E-7 s-1", UnitConverter.getDescp("number/month"));
 //        Assert.assertEquals("mole/m2.d", "1.1574074074074073E-5 m-2.mol.s-1", UnitConverter.getDescp("mole/m2.d"));
         Assert.assertEquals("mole/m2/d", "1.1574074074074073E-5 m-2.mol.s-1", UnitConverter.getDescp("mole/m2/d"));
@@ -106,7 +106,7 @@ public class UnitConverterTest {
         Assert.assertEquals("mg", "1.0E-6 kg", UnitConverter.getDescp("mg"));
         Assert.assertEquals("mg/ha", "9.999999999999999E-11 kg.m-2", UnitConverter.getDescp("mg/ha"));
         Assert.assertEquals("t/ha", "0.1 kg.m-2", UnitConverter.getDescp("t/ha"));
-        Assert.assertEquals("kg[water]/kg[harvest]", "kilogram", UnitConverter.getDescp("kg[water]/kg[harvest]"));
+        Assert.assertEquals("kg[water]/kg[harvest]", "1.0", UnitConverter.getDescp("kg[water]/kg[harvest]"));
         Assert.assertEquals("%/day", "1.1574074074074074E-7 s-1", UnitConverter.getDescp("%/day"));
         Assert.assertEquals("cm/cm2", "100.0 m-1", UnitConverter.getDescp("cm/cm2"));
         Assert.assertEquals("cm/g", "10.0 kg-1.m", UnitConverter.getDescp("cm/g"));
@@ -176,5 +176,9 @@ public class UnitConverterTest {
         Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]/d"));
         Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]^2/d"));
         Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]^-2/d"));
+        Assert.assertEquals("cm3/cm3", UnitConverter.preParsing("cm3[water]/cm3[soil]"));
+        Assert.assertEquals("g/(100g)", UnitConverter.preParsing("g[C]/100g[soil]"));
+        Assert.assertEquals("g", UnitConverter.preParsing("g/[plant]"));
+        Assert.assertEquals("kg/kg", UnitConverter.preParsing("kg[water]/kg[harvest]"));
     }
 }
