@@ -12,7 +12,11 @@ import ucar.units.BaseUnit;
 import ucar.units.ConversionException;
 import ucar.units.NameException;
 import ucar.units.NoSuchUnitException;
+import ucar.units.PrefixDB;
+import ucar.units.PrefixDBAccessException;
 import ucar.units.PrefixDBException;
+import ucar.units.PrefixDBManager;
+import ucar.units.PrefixName;
 import ucar.units.SpecificationException;
 import ucar.units.Unit;
 import ucar.units.UnitDB;
@@ -69,7 +73,10 @@ public class UnitConverter {
     private static final HashMap<String, String> AGMIP_UNIT = new HashMap();
     private static final UnitDB DB = initDB();
     private static final UnitFormat PARSER = init();
+    private static final PrefixDB PREFIX_DB = initPrefixDB();
     private static final HashMap<String, String> BASE_UNIT_MAP = initBaseUnitMap();
+    private static final JSONArray PREFIX_LIST = initPrefixInfo();
+    private static final String PREFIX_LIST_JSON = PREFIX_LIST.toJSONString();
 
     private UnitConverter() {
     }
@@ -318,5 +325,40 @@ public class UnitConverter {
     
     public static String listUnitJsonStr(UNIT_TYPE type) {
         return listUnitJsonArray(type).toJSONString();
+    }
+    
+    private static PrefixDB initPrefixDB() {
+        try {
+            return PrefixDBManager.instance();
+        } catch (PrefixDBException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    private static JSONArray initPrefixInfo() {
+        JSONArray ret = new JSONArray();
+        Iterator it = PREFIX_DB.iterator();
+        while (it.hasNext()) {
+            JSONObject prefixInfo = new JSONObject();
+            PrefixName name = (PrefixName) it.next();
+            prefixInfo.put("name", name.getID());
+            prefixInfo.put("value", Double.toString(name.getValue()));
+            try {
+                prefixInfo.put("symbol", PREFIX_DB.getPrefixByValue(name.getValue()).toString());
+            } catch (PrefixDBAccessException ex) {
+                System.err.println(ex.getMessage());
+            }
+            ret.add(prefixInfo);
+        }
+        return ret;
+    }
+    
+    public static JSONArray listPrefix() {
+        return PREFIX_LIST;
+    }
+    
+    public static String listPrefixJsonStr() {
+        return PREFIX_LIST_JSON;
     }
 }
