@@ -170,11 +170,11 @@ public class UnitConverterTest {
     
     @Test
     public void testComments() {
-        Assert.assertEquals("g.d-1", UnitConverter.removeComment("g.[plant]-1.d-1"));
-        Assert.assertEquals("g.d-1", UnitConverter.removeComment("g.[plant]^-2.d-1"));
-        Assert.assertEquals("g.d-1", UnitConverter.removeComment("g.[plant]^2.d-1"));
-        Assert.assertEquals("g/d", UnitConverter.removeComment("g/[plant]/d"));
-        Assert.assertEquals("g/d", UnitConverter.removeComment("g/[plant]^2/d"));
-        Assert.assertEquals("g/d", UnitConverter.removeComment("g/[plant]^-2/d"));
+        Assert.assertEquals("g.d-1", UnitConverter.preParsing("g.[plant]-1.d-1"));
+        Assert.assertEquals("g.d-1", UnitConverter.preParsing("g.[plant]^-2.d-1"));
+        Assert.assertEquals("g.d-1", UnitConverter.preParsing("g.[plant]^2.d-1"));
+        Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]/d"));
+        Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]^2/d"));
+        Assert.assertEquals("g/d", UnitConverter.preParsing("g/[plant]^-2/d"));
     }
 }
