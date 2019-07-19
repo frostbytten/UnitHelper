@@ -315,10 +315,10 @@ public class UnitConverter {
         }
         try {
             Unit unit = PARSER.parse(unitStrNoComment);
-            if (unit.isDimensionless()) {
+            String ret = unit.getDerivedUnit().getQuantityDimension().toString();
+            if ((ret == null || ret.isEmpty()) && unit.isDimensionless()) {
                 return "unitless";
             }
-            String ret = unit.getDerivedUnit().getQuantityDimension().toString();
             return ret;
         } catch (Exception ex) {
             return "";

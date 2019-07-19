@@ -181,4 +181,9 @@ public class UnitConverterTest {
         Assert.assertEquals("g", UnitConverter.preParsing("g/[plant]"));
         Assert.assertEquals("kg/kg", UnitConverter.preParsing("kg[water]/kg[harvest]"));
     }
+    
+    @Test
+    public void testCategory() {
+        Assert.assertEquals("Plane Angle", UnitConverter.getCategory("deg"));
+    }
 }
