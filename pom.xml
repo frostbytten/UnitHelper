@@ -5,6 +5,44 @@
 	<artifactId>unit-helper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+
+	<name>Unit Helper Library</name>
+	<description>A library used to convert units between each other with
+		customizations for ICASA units. Uses UDUnits.
+	</description>
+	<url>https://github.com/agmip/UnitHelper</url>
+
+	<licenses>
+		<license>
+			<name>BSD 3-Clause</name>
+			<url>https://dev.agmip.org/licenses/LICENSE.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Meng Zhang</name>
+			<email>meng.zhang15@ufl.edu</email>
+			<roles>
+				<role>Lead Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Christopher Villalobos</name>
+			<email>cvillalobos@ufl.edu</email>
+			<roles>
+				<role>Architect</role>
+				<role>Integrator</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/agmip/UnitHelper.git</connection>
+		<developerConnection>scm:git:ssh://github.com:agmip/UnitHelper.git</developerConnection>
+		<url>http://github.com/agmip/UnitHelper/tree/master</url>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
