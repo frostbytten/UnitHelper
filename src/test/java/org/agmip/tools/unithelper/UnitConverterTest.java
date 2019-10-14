@@ -147,6 +147,7 @@ public class UnitConverterTest {
 //        Assert.assertEquals("number/m", "1.0E-18 ber.m-1", UnitConverter.getDescp("number/m"));
 //        Assert.assertEquals("number/m2.d", "8.64E-14 ber.m-2.s", UnitConverter.getDescp("number/m2.d"));
 //        Assert.assertEquals("number/m2/d", "8.64E-14 ber.m-2.s", UnitConverter.getDescp("number/m2/d"));
+        Assert.assertEquals("%", "0.01", UnitConverter.getDescp("%"));
         
     }
     
