@@ -31,8 +31,8 @@
 			<name>Christopher Villalobos</name>
 			<email>cvillalobos@ufl.edu</email>
 			<roles>
-				<role>Architect</role>
 				<role>Integrator</role>
+				<role>Developer</role>
 			</roles>
 		</developer>
 	</developers>
