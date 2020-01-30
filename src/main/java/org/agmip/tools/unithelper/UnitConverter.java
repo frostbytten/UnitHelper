@@ -87,12 +87,18 @@ public class UnitConverter {
         try {
             UnitDB DB_ret = UnitDBManager.instance();
             AGMIP_UNIT.put("number", "count");
+            AGMIP_UNIT.put("plant", "count");
+            AGMIP_UNIT.put("leaf", "count");
+            AGMIP_UNIT.put("eye", "count");
+            AGMIP_UNIT.put("ear", "count");
+            AGMIP_UNIT.put("shoot", "count");
             AGMIP_UNIT.put("dap", "day");
             AGMIP_UNIT.put("doy", "day");
             AGMIP_UNIT.put("decimal_degree", "degree");
             AGMIP_UNIT.put("fraction", "1");
             AGMIP_UNIT.put("unitless", "1");
             AGMIP_UNIT.put("ratio", "1");
+            AGMIP_UNIT.put("vpm", "ppm");
             try {
                 for (String key : AGMIP_UNIT.keySet()) {
                     DB_ret.addAlias(key, AGMIP_UNIT.get(key));
@@ -178,7 +184,7 @@ public class UnitConverter {
             ret.put("status", "1");
             ret.put("message", ex.getMessage());
         } catch (Exception ex) {
-//            Logger.getLogger(UnitConverter.class.getName()).log(Level.SEVERE, null, ex);
+//            ex.printStackTrace(System.err);
             ret.put("status", "1");
             ret.put("message", "undefined unit");
         }
@@ -210,7 +216,7 @@ public class UnitConverter {
             ret.put("status", "1");
             ret.put("message", ex.getMessage());
         } catch (Exception ex) {
-//            Logger.getLogger(UnitConverter.class.getName()).log(Level.SEVERE, null, ex);
+//            ex.printStackTrace(System.err);
             ret.put("status", "1");
             ret.put("message", "undefined unit");
         }
@@ -246,7 +252,7 @@ public class UnitConverter {
     }
 
     protected static String preParsing(String unit) {
-        String ret = unit.replaceAll("\\[[^\\]]*\\]", "").replaceAll("\\s", "");
+        String ret = unit.replaceAll(" per ", "/").replaceAll("\\[[^\\]]*\\]", "").replaceAll("\\s", "");
         // Remove extra splitter used by comment expression
         for (String s1 : SPLITTER) {
             for (String s2 : SPLITTER) {
@@ -262,6 +268,9 @@ public class UnitConverter {
             if (ret.endsWith(s)) {
                 ret = ret.substring(0, ret.length() - 1);
             }
+            if (ret.startsWith(s)) {
+                ret = "unitless" + unit;
+            }
         }
         
         return ret;
@@ -274,7 +283,11 @@ public class UnitConverter {
     public static boolean isValid(String unitStr) {
         try {
             return PARSER.parse(preParsing(unitStr)) != null;
-        } catch (Exception ex) {
+        } catch (SpecificationException ex) {
+            System.err.println(ex.getMessage());
+            return false;
+        } catch (PrefixDBException | UnitDBException | UnitSystemException ex) {
+            ex.printStackTrace(System.err);
             return false;
         }
     }
@@ -300,7 +313,11 @@ public class UnitConverter {
                 ret = "";
             }
             return ret;
-        } catch (Exception ex) {
+        } catch (SpecificationException ex) {
+            System.err.println(ex.getMessage());
+            return "";
+        } catch (PrefixDBException | UnitDBException | UnitSystemException ex) {
+            ex.printStackTrace(System.err);
             return "";
         }
     }
@@ -320,7 +337,11 @@ public class UnitConverter {
                 return "unitless";
             }
             return ret;
-        } catch (Exception ex) {
+        } catch (SpecificationException ex) {
+            System.err.println(ex.getMessage());
+            return "";
+        } catch (PrefixDBException | UnitDBException | UnitSystemException ex) {
+            ex.printStackTrace(System.err);
             return "";
         }
     }

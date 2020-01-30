@@ -84,7 +84,7 @@ public class UnitConverterTest {
         Assert.assertEquals("g/kg", "0.001", UnitConverter.getDescp("g/kg"));
         Assert.assertEquals("ppb", "1.0E-9", UnitConverter.getDescp("ppb"));
         Assert.assertEquals("seimens", "", UnitConverter.getDescp("seimens"));
-//        Assert.assertEquals("vpm", "vpm", UnitConverter.getDescp("vpm"));
+        Assert.assertEquals("vpm", "1.0E-6", UnitConverter.getDescp("vpm"));
 //        Assert.assertEquals("kPa/°C", "1000.0 K-1.kg.m-1.s-2", UnitConverter.getDescp("kPa/°C"));
         Assert.assertEquals("kPa/degC", "1000.0 K-1.kg.m-1.s-2", UnitConverter.getDescp("kPa/degC"));
         Assert.assertEquals("1/mm2", "1000000.0 m-2", UnitConverter.getDescp("1/mm2"));
@@ -97,7 +97,7 @@ public class UnitConverterTest {
         Assert.assertEquals("kPa", "1000.0 Pa", UnitConverter.getDescp("kPa"));
         Assert.assertEquals("dap", "86400.0 s", UnitConverter.getDescp("dap"));
 //        Assert.assertEquals("code", "0.01 ode", UnitConverter.getDescp("code"));
-        Assert.assertEquals("g/eye", "0.001 eye-1.kg", UnitConverter.getDescp("g/eye")); //TODO
+        Assert.assertEquals("g/eye", "0.001 kg", UnitConverter.getDescp("g/eye")); //TODO
         Assert.assertEquals("g/m2", "0.001 kg.m-2", UnitConverter.getDescp("g/m2"));
         Assert.assertEquals("g/plant", "0.001 kg", UnitConverter.getDescp("g/[plant]"));
         Assert.assertEquals("g/unit", "0.001 kg", UnitConverter.getDescp("g/[unit]"));
@@ -112,8 +112,8 @@ public class UnitConverterTest {
         Assert.assertEquals("cm/g", "10.0 kg-1.m", UnitConverter.getDescp("cm/g"));
         Assert.assertEquals("cm2", "1.0E-4 m2", UnitConverter.getDescp("cm2"));
         Assert.assertEquals("cm2/g", "0.1 kg-1.m2", UnitConverter.getDescp("cm2/g"));
-        Assert.assertEquals("cm2/leaf", "1.0E-4 leaf-1.m2", UnitConverter.getDescp("cm2/leaf"));  // TODO
-        Assert.assertEquals("cm2/plant", "1.0E8 lant-1.m2", UnitConverter.getDescp("cm2/plant"));  // TODO
+        Assert.assertEquals("cm2/leaf", "1.0E-4 m2", UnitConverter.getDescp("cm2/leaf"));  // TODO
+        Assert.assertEquals("cm2/plant", "1.0E-4 m2", UnitConverter.getDescp("cm2/plant"));  // TODO
         Assert.assertEquals("g", "0.001 kg", UnitConverter.getDescp("g"));
         Assert.assertEquals("g/cm", "0.1 kg.m-1", UnitConverter.getDescp("g/cm"));
         Assert.assertEquals("g/[corm]", "0.001 kg", UnitConverter.getDescp("g/[corm]"));
@@ -131,6 +131,9 @@ public class UnitConverterTest {
         Assert.assertEquals("number/[plant]", "count", UnitConverter.getDescp("number/[plant]"));
         Assert.assertEquals("number/[shoot]", "count", UnitConverter.getDescp("number/[shoot]"));
         Assert.assertEquals("number/[ear]", "count", UnitConverter.getDescp("number/[ear]"));
+        Assert.assertEquals("number/plant", "count", UnitConverter.getDescp("number/[plant]"));
+        Assert.assertEquals("number/shoot", "count", UnitConverter.getDescp("number/[shoot]"));
+        Assert.assertEquals("number/ear", "count", UnitConverter.getDescp("number/[ear]"));
         Assert.assertEquals("ratio", "ratio", UnitConverter.getDescp("ratio"));
         Assert.assertEquals("g/cm2", "10.0 kg.m-2", UnitConverter.getDescp("g/cm2"));
         Assert.assertEquals("cm/cm3", "9999.999999999998 m-2", UnitConverter.getDescp("cm/cm3"));
@@ -147,6 +150,7 @@ public class UnitConverterTest {
 //        Assert.assertEquals("number/m", "1.0E-18 ber.m-1", UnitConverter.getDescp("number/m"));
 //        Assert.assertEquals("number/m2.d", "8.64E-14 ber.m-2.s", UnitConverter.getDescp("number/m2.d"));
 //        Assert.assertEquals("number/m2/d", "8.64E-14 ber.m-2.s", UnitConverter.getDescp("number/m2/d"));
+        Assert.assertEquals("%", "0.01", UnitConverter.getDescp("%"));
         
     }
     
